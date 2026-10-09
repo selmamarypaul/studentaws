@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Student Registration Portal</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="portal-container">
+        <main class="portal-card">
+            
+            <!-- Left Branding & Feature Section -->
+            <section class="brand-panel">
+                <div class="brand-header">
+                    <div class="brand-logo">
+                        <div class="brand-logo-icon">🎓</div>
+                        <div>
+                            <h1 class="brand-title">StudentHub</h1>
+                            <p class="brand-subtitle">Registration Portal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brand-body">
+                    <h2 class="brand-headline">Manage Student Admissions Seamlessly</h2>
+                    <p class="brand-description">
+                        Register new students securely into the university database. Photos and credentials are stored safely in cloud infrastructure.
+                    </p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-check">✓</span>
+                            <span>Secure Cloud Registration</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check">✓</span>
+                            <span>AWS S3 Photo Storage</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-check">✓</span>
+                            <span>Instant Database Verification</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brand-footer">
+                    &copy; 2026 StudentHub Enrollment Systems. ICT Academy Kerala Project.
+                </div>
+            </section>
+
+            <!-- Right Registration Form Section -->
+            <section class="form-panel">
+                <div class="form-header">
+                    <h2 class="form-title">Student Registration</h2>
+                    <p class="form-subtext">Please enter student details below to complete enrollment.</p>
+                </div>
+
+                <!-- Alert Banner for Feedback -->
+                <div id="alertBanner" class="alert-banner hidden" role="alert">
+                    <span class="alert-icon"></span>
+                    <span id="alertMessage"></span>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="registrationForm" action="/register" method="POST" enctype="multipart/form-data" class="registration-form" novalidate>
+                    
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="nameInput" class="form-label">
+                            Full Name <span class="required-star">*</span>
+                        </label>
+                        <input type="text" 
+                               id="nameInput" 
+                               name="name" 
+                               class="input-control" 
+                               placeholder="e.g. John Doe" 
+                               required 
+                               autocomplete="name">
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-group">
+                        <label for="emailInput" class="form-label">
+                            Email Address <span class="required-star">*</span>
+                        </label>
+                        <input type="email" 
+                               id="emailInput" 
+                               name="email" 
+                               class="input-control" 
+                               placeholder="e.g. john.doe@university.edu" 
+                               required 
+                               autocomplete="email">
+                    </div>
+
+                    <!-- Course Selection -->
+                    <div class="form-group">
+                        <label for="courseSelect" class="form-label">
+                            Course / Department <span class="required-star">*</span>
+                        </label>
+                        <select id="courseSelect" name="course" class="input-control" required>
+                            <option value="" disabled selected>-- Select Engineering Course --</option>
+                            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                            <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                            <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                        </select>
+                    </div>
+
+                    <!-- Photo Upload -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            Student Photo <span class="required-star">*</span>
+                        </label>
+                        
+                        <div class="upload-dropzone" id="uploadDropzone">
+                            <input type="file" 
+                                   id="photoInput" 
+                                   name="photo" 
+                                   class="upload-input-file" 
+                                   accept=".jpg,.jpeg,.png" 
+                                   required>
+
+                            <div class="upload-prompt" id="uploadPrompt">
+                                <div class="upload-icon">📷</div>
+                                <div class="upload-title">Click or drag photo to upload</div>
+                                <div class="upload-hint">Supports JPG, JPEG or PNG (Max 5MB)</div>
+                            </div>
+
+                            <div class="preview-container hidden" id="previewContainer">
+                                <img src="" alt="Photo Preview" class="preview-thumbnail" id="previewThumbnail">
+                                <div class="preview-details">
+                                    <div class="preview-filename" id="previewFilename"></div>
+                                    <div class="preview-filesize" id="previewFilesize"></div>
+                                </div>
+                                <button type="button" class="btn-replace" id="btnReplace">Replace</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="btn-submit">
+                        <span class="spinner"></span>
+                        <span id="btnText">Register Student</span>
+                    </button>
+
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
